@@ -23,14 +23,14 @@ const useProjects = () => {
     }
   };
 
-  const get = (id: string): Project | null => {
+  const get = useCallback((id: string): Project | null => {
     const projects = localStorage.getItem("projects");
     if (projects) {
       const parsedProjects = JSON.parse(projects) as Project[];
       return parsedProjects.find((project) => project.id === id) ?? null;
     }
     return null;
-  };
+  }, []);
 
   const update = (id: string, project: Partial<Omit<Project, "id">>): void => {
     const projects = localStorage.getItem("projects");

@@ -6,6 +6,7 @@ import {
   ProjectsContainer,
   SignInContainer,
   SignUpContainer,
+  TasksContainer,
 } from "./router-imports";
 
 const router = createBrowserRouter([
@@ -26,8 +27,12 @@ const router = createBrowserRouter([
             element: <ProjectsContainer />,
           },
           {
-            path: "projects",
+            path: "project",
             element: <ProjectsContainer />,
+          },
+          {
+            path: "project/:id/task",
+            element: <TasksContainer />,
           },
         ],
       },

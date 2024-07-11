@@ -8,6 +8,7 @@ export type Task = {
   content: string; // using novel content field
   createdAt: string;
   updatedAt: string;
+  projectId: string;
 };
 
 export type TaskStatus = "OPEN" | "IN_PROGRESS" | "DONE";

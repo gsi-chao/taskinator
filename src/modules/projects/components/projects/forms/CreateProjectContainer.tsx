@@ -7,7 +7,11 @@ import { toast } from "sonner";
 import { CreateProjectSheet } from "./CreateProjectSheet";
 import { CreateProjectSchema } from "./schemas";
 
-const CreateProjectContainer = () => {
+type Props = {
+  onReadySubmitForm?: (data: Project) => void;
+};
+
+const CreateProjectContainer: React.FC<Props> = ({ onReadySubmitForm }) => {
   const { create } = useProjects();
   const form = useForm<Project>({
     resolver: zodResolver(CreateProjectSchema),
@@ -21,6 +25,7 @@ const CreateProjectContainer = () => {
   const onSubmitForm = (data: Project) => {
     try {
       create(data);
+      onReadySubmitForm?.(data);
       toast.success("Event has been created.");
     } catch (error) {
       toast.error("There was an error creating the project.");

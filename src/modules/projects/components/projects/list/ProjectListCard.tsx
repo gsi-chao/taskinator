@@ -12,6 +12,7 @@ import {
 import { cn } from "@/core/lib/utils";
 import { Project } from "@/modules/projects/types/project";
 import { Task } from "@/modules/projects/types/task";
+import { useNavigate } from "react-router-dom";
 
 type CardProps = {
   project: Project;
@@ -24,6 +25,7 @@ const ProjectListCard = ({
   lastTask,
   ...props
 }: CardProps) => {
+  const navigate = useNavigate();
   return (
     <Card className={cn("w-[300px]", className)} {...props}>
       <CardHeader>
@@ -57,7 +59,10 @@ const ProjectListCard = ({
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full">
+        <Button
+          className="w-full"
+          onClick={() => navigate(`/project/${project.id}/task`)}
+        >
           <EyeIcon className="mr-2 h-4 w-4" /> See More
         </Button>
       </CardFooter>
